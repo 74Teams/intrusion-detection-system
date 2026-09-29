@@ -1,0 +1,34 @@
+# ==============================================================================
+# HYBRID NIDS CONFIGURATION
+# ==============================================================================
+
+system:
+  env: "development"
+  log_level: "INFO"
+
+network:
+  # Ten card mang de lang nghe (trong = tu dong phat hien card mac dinh)
+  interface: ""
+  # Bo loc BPF: vi du "tcp or udp or icmp" hoac "ip"
+  bpf_filter: "ip"
+  promiscuous: true
+  # Che do bat goi: "live" (card mang that) hoac "offline" (doc file .pcap)
+  capture_mode: "offline"
+  pcap_file: "pcap_samples/demo_attacks.pcap"
+
+detection:
+  rules_dir: "rules"
+  # Bat/Tat module
+  enable_rule_engine: true
+  enable_ai_worker: true
+  # Gioi han hang doi goi tin (Packet Buffer Queue)
+  queue_max_size: 10000
+
+database:
+  # SQLite cho giai doan dev/demo (khong can cai MySQL)
+  type: "sqlite"
+  db_url: "sqlite:///nids_events.db"
+
+api:
+  host: "0.0.0.0"
+  port: 8000
