@@ -1,7 +1,5 @@
-# ==============================================================================
 # WEB ATTACKS DETECTION RULES
 # Format: alert [proto] [src_ip] [src_port] -> [dst_ip] [dst_port] (options)
-# ==============================================================================
 
 # --- 1. SQL INJECTION (SQLi) ---
 alert tcp any any -> any $HTTP_PORTS (msg:"WEB-ATTACK SQL Injection - UNION SELECT detected"; http_uri; content:"union"; nocase; content:"select"; nocase; sid:1000001; rev:1; classtype:web-application-attack; severity:1;)

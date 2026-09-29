@@ -29,7 +29,6 @@ def get_db_url() -> str:
         port = db_cfg.get("port", 3306)
         name = db_cfg.get("name", "nids_db")
         
-        # Nếu có password thì encode an toàn
         auth = f"{user}:{quote_plus(password)}" if password else user
         return f"mysql+pymysql://{auth}@{host}:{port}/{name}?charset=utf8mb4"
     
